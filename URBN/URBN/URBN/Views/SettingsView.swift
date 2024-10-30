@@ -34,7 +34,6 @@ struct SettingsView: View {
                                 .foregroundColor(.gray)
                         }
                         
-                        // Botón de cámara sobre la imagen de perfil
                         VStack {
                             Spacer()
                             HStack {
@@ -69,7 +68,7 @@ struct SettingsView: View {
                         NavigationLink(destination: Text("Política de Privacidad")) {
                             HStack {
                                 Image(systemName: "shield")
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.customRed)
                                     .imageScale(.large)
                                 Text("Política de Privacidad")
                                     .font(.system(size: 20))
@@ -79,7 +78,7 @@ struct SettingsView: View {
                         NavigationLink(destination: Text("Términos y Condiciones")) {
                             HStack {
                                 Image(systemName: "doc.text")
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.customRed)
                                     .imageScale(.large)
                                 Text("Términos y Condiciones")
                                     .font(.system(size: 20))
@@ -89,7 +88,7 @@ struct SettingsView: View {
                         NavigationLink(destination: Text("Contactar Soporte")) {
                             HStack {
                                 Image(systemName: "envelope")
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.customRed)
                                     .imageScale(.large)
                                 Text("Contactar Soporte")
                                     .font(.system(size: 20))
@@ -99,7 +98,7 @@ struct SettingsView: View {
                         NavigationLink(destination: Text("Reportar Bug")) {
                             HStack {
                                 Image(systemName: "exclamationmark.circle")
-                                    .foregroundColor(.red)
+                                    .foregroundColor(.customRed)
                                     .imageScale(.large)
                                 Text("Reportar Bug")
                                     .font(.system(size: 20))
@@ -112,16 +111,8 @@ struct SettingsView: View {
                 Spacer()
             }
             .navigationBarTitle("Perfil", displayMode: .inline)
-            .navigationBarItems(leading: Button(action: {
-                // Acción del botón atrás
-            }) {
-                Image(systemName: "chevron.left.circle.fill")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                    .font(.system(size: 28))
-            })
-            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) { // AQUÍ VA LA LÍNEA CORRECTA
-                CustomImagePicker(image: $inputImage) // Usamos el nuevo nombre aquí
+            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                CustomImagePicker(image: $inputImage)
             }
         }
     }
@@ -133,15 +124,15 @@ struct SettingsView: View {
     }
 }
 
-
-struct CustomImagePicker: UIViewControllerRepresentable { // Cambié el nombre aquí
+// Sigue sin desplegarse el imagepicker
+struct CustomImagePicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     @Environment(\.presentationMode) var presentationMode
 
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let parent: CustomImagePicker
 
-        init(parent: CustomImagePicker) { // Actualizamos aquí
+        init(parent: CustomImagePicker) {
             self.parent = parent
         }
 
@@ -164,7 +155,8 @@ struct CustomImagePicker: UIViewControllerRepresentable { // Cambié el nombre a
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.delegate = context.coordinator
-        picker.allowsEditing = false // Cambia a true si quieres permitir la edición
+        picker.sourceType = .photoLibrary // Asegura que se use la galería
+        picker.allowsEditing = false
         return picker
     }
 

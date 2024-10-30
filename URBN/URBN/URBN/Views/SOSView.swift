@@ -1,3 +1,4 @@
+//
 //  SOSView.swift
 //  URBN
 //
@@ -45,7 +46,6 @@ struct SOSView: View {
                 Spacer()
 
                 Button(action: {
-                    // Acción del botón de configuración
                 }) {
                     ZStack {
                         Circle()
@@ -56,7 +56,7 @@ struct SOSView: View {
                         Image(systemName: "gearshape.fill")
                             .resizable()
                             .frame(width: 28, height: 28)
-                            .foregroundColor(.red)
+                            .foregroundColor(.customRed)
                     }
                 }
             }
@@ -82,7 +82,7 @@ struct SOSView: View {
                             }) {
                                 ZStack {
                                     Circle()
-                                        .fill(Color.red)
+                                        .fill(Color.customRed)
                                         .frame(width: 80, height: 80)
                                     HStack(spacing: 6) {
                                         ForEach(0..<3) { _ in
@@ -106,7 +106,6 @@ struct SOSView: View {
 
             VStack {
                 Button(action: {
-                    // Acción de SOS
                 }) {
                     ZStack {
                         Circle()
@@ -162,7 +161,6 @@ struct SOSView: View {
         profileImage = Image(uiImage: inputImage)
     }
 }
-
 
 // Implementación de ImagePicker
 struct ImagePicker: UIViewControllerRepresentable {
