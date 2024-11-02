@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+// Define el color personalizado usando el valor hexadecimal
+extension Color {
+    static let customRed = Color(red: 255/255, green: 104/255, blue: 104/255)
+}
+
 struct TabBarView: View {
     @Binding var selectedView: Tab
 
@@ -19,7 +24,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .map ? "map.fill" : "map")
                     .resizable()
                     .frame(width: 30, height: 25)
-                    .foregroundColor(.red)
+                    .foregroundColor(.customRed)
             }
             Spacer()
             Button(action: {
@@ -28,7 +33,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .community ? "person.3.fill" : "person.3")
                     .resizable()
                     .frame(width: 45, height: 30)
-                    .foregroundColor(.red)
+                    .foregroundColor(.customRed)
             }
             Spacer()
             Button(action: {
@@ -36,7 +41,7 @@ struct TabBarView: View {
             }) {
                 ZStack {
                     Circle()
-                        .fill(Color.red)
+                        .fill(Color.customRed)
                         .frame(width: 60, height: 60)
                         .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 3)
                     
@@ -53,7 +58,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .publish ? "plus.app.fill" : "plus.app")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(.red)
+                    .foregroundColor(.customRed)
             }
             Spacer()
             Button(action: {
@@ -62,7 +67,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .settings ? "person.fill" : "person")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(.red)
+                    .foregroundColor(.customRed)
             }
             Spacer()
         }

@@ -11,9 +11,8 @@ struct CommunityView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // Barra de navegación superior
                 HStack {
-                    // Barra de búsqueda con waveform y magnifyingglass dentro
+                    // Barra de búsqueda con waveform y magnifyingglass
                     HStack {
                         HStack {
                             Image(systemName: "magnifyingglass")
@@ -27,9 +26,7 @@ struct CommunityView: View {
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(8)
 
-                        // Botón con el símbolo "waveform" dentro de la barra de búsqueda
                         Button(action: {
-                            // Acción de búsqueda por voz o waveform
                         }) {
                             Image(systemName: "waveform")
                                 .resizable()
@@ -52,7 +49,7 @@ struct CommunityView: View {
                         Image(systemName: "bookmark.fill")
                             .resizable()
                             .frame(width: 20, height: 25)
-                            .foregroundColor(.red)
+                            .foregroundColor(.customRed)
                     }
 
                     Spacer()
