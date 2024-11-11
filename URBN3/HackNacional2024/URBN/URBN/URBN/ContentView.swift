@@ -16,7 +16,7 @@ struct ContentView: View {
             Group {
                 switch selectedView {
                 case .map:
-                    MapView()
+                    TripMapView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .community:
                     CommunityView()

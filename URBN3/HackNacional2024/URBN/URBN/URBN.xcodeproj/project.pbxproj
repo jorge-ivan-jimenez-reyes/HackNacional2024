@@ -3,14 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86AE3EB12CE1D4C0007EA14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95252CD1BC3F00D19B97 /* Assets.xcassets */; };
+		86AE3EB22CE1D4C4007EA14E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95282CD1BC3F00D19B97 /* Preview Assets.xcassets */; };
+		86E12A6A2CE1B2D3008FB684 /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */; };
+		86E12A882CE1C66C008FB684 /* TripMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E12A872CE1C65F008FB684 /* TripMapView.swift */; };
 		E77B95222CD1BC3E00D19B97 /* URBNApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95212CD1BC3E00D19B97 /* URBNApp.swift */; };
 		E77B95242CD1BC3E00D19B97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95232CD1BC3E00D19B97 /* ContentView.swift */; };
-		E77B95262CD1BC3F00D19B97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95252CD1BC3F00D19B97 /* Assets.xcassets */; };
-		E77B95292CD1BC3F00D19B97 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95282CD1BC3F00D19B97 /* Preview Assets.xcassets */; };
 		E77B95332CD1BC3F00D19B97 /* URBNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95322CD1BC3F00D19B97 /* URBNTests.swift */; };
 		E77B953D2CD1BC3F00D19B97 /* URBNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B953C2CD1BC3F00D19B97 /* URBNUITests.swift */; };
 		E77B953F2CD1BC3F00D19B97 /* URBNUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B953E2CD1BC3F00D19B97 /* URBNUITestsLaunchTests.swift */; };
@@ -18,7 +20,6 @@
 		E77B95502CD1BEB800D19B97 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B954F2CD1BEB800D19B97 /* CommunityView.swift */; };
 		E77B95522CD1BEC800D19B97 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95512CD1BEC800D19B97 /* SettingsView.swift */; };
 		E77B95542CD1C08400D19B97 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95532CD1C08400D19B97 /* TabBarView.swift */; };
-		E77B95562CD1C46800D19B97 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95552CD1C46800D19B97 /* MapView.swift */; };
 		E77B95582CD1C48500D19B97 /* PublishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77B95572CD1C48500D19B97 /* PublishView.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86AE3EBB2CE1D847007EA14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationViewFactory.swift; sourceTree = "<group>"; };
+		86E12A872CE1C65F008FB684 /* TripMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapView.swift; sourceTree = "<group>"; };
 		E77B951E2CD1BC3E00D19B97 /* URBN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URBN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77B95212CD1BC3E00D19B97 /* URBNApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URBNApp.swift; sourceTree = "<group>"; };
 		E77B95232CD1BC3E00D19B97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,9 +58,14 @@
 		E77B954F2CD1BEB800D19B97 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		E77B95512CD1BEC800D19B97 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E77B95532CD1C08400D19B97 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
-		E77B95552CD1C46800D19B97 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E77B95572CD1C48500D19B97 /* PublishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		86E12A722CE1C539008FB684 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		86E12A732CE1C543008FB684 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		86E12A802CE1C5D8008FB684 /* SharedViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SharedViews; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E77B951B2CD1BC3E00D19B97 /* Frameworks */ = {
@@ -106,6 +115,10 @@
 		E77B95202CD1BC3E00D19B97 /* URBN */ = {
 			isa = PBXGroup;
 			children = (
+				86AE3EBB2CE1D847007EA14E /* Info.plist */,
+				86E12A732CE1C543008FB684 /* Services */,
+				86E12A802CE1C5D8008FB684 /* SharedViews */,
+				86E12A722CE1C539008FB684 /* Models */,
 				E77B954C2CD1BE8900D19B97 /* Views */,
 				E77B95212CD1BC3E00D19B97 /* URBNApp.swift */,
 				E77B95232CD1BC3E00D19B97 /* ContentView.swift */,
@@ -144,10 +157,11 @@
 		E77B954C2CD1BE8900D19B97 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				86E12A872CE1C65F008FB684 /* TripMapView.swift */,
+				86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */,
 				E77B954D2CD1BE9B00D19B97 /* SOSView.swift */,
 				E77B954F2CD1BEB800D19B97 /* CommunityView.swift */,
 				E77B95512CD1BEC800D19B97 /* SettingsView.swift */,
-				E77B95552CD1C46800D19B97 /* MapView.swift */,
 				E77B95572CD1C48500D19B97 /* PublishView.swift */,
 			);
 			path = Views;
@@ -167,6 +181,11 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				86E12A722CE1C539008FB684 /* Models */,
+				86E12A732CE1C543008FB684 /* Services */,
+				86E12A802CE1C5D8008FB684 /* SharedViews */,
 			);
 			name = URBN;
 			productName = URBN;
@@ -257,8 +276,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77B95292CD1BC3F00D19B97 /* Preview Assets.xcassets in Resources */,
-				E77B95262CD1BC3F00D19B97 /* Assets.xcassets in Resources */,
+				86AE3EB22CE1D4C4007EA14E /* Preview Assets.xcassets in Resources */,
+				86AE3EB12CE1D4C0007EA14E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E77B95562CD1C46800D19B97 /* MapView.swift in Sources */,
 				E77B95522CD1BEC800D19B97 /* SettingsView.swift in Sources */,
 				E77B954E2CD1BE9B00D19B97 /* SOSView.swift in Sources */,
+				86E12A882CE1C66C008FB684 /* TripMapView.swift in Sources */,
 				E77B95242CD1BC3E00D19B97 /* ContentView.swift in Sources */,
 				E77B95502CD1BEB800D19B97 /* CommunityView.swift in Sources */,
 				E77B95542CD1C08400D19B97 /* TabBarView.swift in Sources */,
+				86E12A6A2CE1B2D3008FB684 /* AnnotationViewFactory.swift in Sources */,
 				E77B95582CD1C48500D19B97 /* PublishView.swift in Sources */,
 				E77B95222CD1BC3E00D19B97 /* URBNApp.swift in Sources */,
 			);
@@ -383,6 +403,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -440,6 +461,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				NEW_SETTING = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -454,8 +476,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"URBN/Preview Content\"";
+				DEVELOPMENT_TEAM = DM6LT3HA8M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = URBN/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -482,8 +508,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"URBN/Preview Content\"";
+				DEVELOPMENT_TEAM = DM6LT3HA8M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = URBN/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
