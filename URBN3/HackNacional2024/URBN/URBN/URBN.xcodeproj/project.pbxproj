@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		864793F52CE3029E00AB66BF /* HeatMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864793F42CE3029C00AB66BF /* HeatMapOverlay.swift */; };
+		864794022CE33EB400AB66BF /* SplineRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 864794012CE33EB400AB66BF /* SplineRuntime */; };
 		86AE3EB12CE1D4C0007EA14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95252CD1BC3F00D19B97 /* Assets.xcassets */; };
 		86AE3EB22CE1D4C4007EA14E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95282CD1BC3F00D19B97 /* Preview Assets.xcassets */; };
 		86E12A6A2CE1B2D3008FB684 /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		864793F62CE328B000AB66BF /* ExtraViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ExtraViews; sourceTree = "<group>"; };
+		8647940B2CE349B600AB66BF /* media */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = media; sourceTree = "<group>"; };
 		86E12A722CE1C539008FB684 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		86E12A732CE1C543008FB684 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		86E12A802CE1C5D8008FB684 /* SharedViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SharedViews; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				864794022CE33EB400AB66BF /* SplineRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +121,7 @@
 		E77B95202CD1BC3E00D19B97 /* URBN */ = {
 			isa = PBXGroup;
 			children = (
+				8647940B2CE349B600AB66BF /* media */,
 				86AE3EBB2CE1D847007EA14E /* Info.plist */,
 				86E12A732CE1C543008FB684 /* Services */,
 				86E12A802CE1C5D8008FB684 /* SharedViews */,
@@ -186,9 +190,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				864794042CE33EED00AB66BF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				864793F62CE328B000AB66BF /* ExtraViews */,
+				8647940B2CE349B600AB66BF /* media */,
 				86E12A722CE1C539008FB684 /* Models */,
 				86E12A732CE1C543008FB684 /* Services */,
 				86E12A802CE1C5D8008FB684 /* SharedViews */,
@@ -266,6 +272,10 @@
 				Base,
 			);
 			mainGroup = E77B95152CD1BC3E00D19B97;
+			packageReferences = (
+				864794002CE33DF900AB66BF /* XCRemoteSwiftPackageReference "spline-ios" */,
+				864794072CE3439C00AB66BF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = E77B951F2CD1BC3E00D19B97 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +351,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		864794042CE33EED00AB66BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 864794032CE33EED00AB66BF /* SplineRuntime */;
+		};
 		E77B95302CD1BC3F00D19B97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E77B951D2CD1BC3E00D19B97 /* URBN */;
@@ -651,6 +665,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		864794002CE33DF900AB66BF /* XCRemoteSwiftPackageReference "spline-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/splinetool/spline-ios";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		864794072CE3439C00AB66BF /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		864794012CE33EB400AB66BF /* SplineRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 864794002CE33DF900AB66BF /* XCRemoteSwiftPackageReference "spline-ios" */;
+			productName = SplineRuntime;
+		};
+		864794032CE33EED00AB66BF /* SplineRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 864794002CE33DF900AB66BF /* XCRemoteSwiftPackageReference "spline-ios" */;
+			productName = SplineRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E77B95162CD1BC3E00D19B97 /* Project object */;
 }

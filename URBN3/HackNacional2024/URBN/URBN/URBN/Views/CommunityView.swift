@@ -1,14 +1,23 @@
-//
-//  CommunityView.swift
-//  URBN
-//
-//  Created by Ximena Cruz on 29/10/24.
-//
-
 import SwiftUI
+import AVKit
+
+// Estructura para representar una infografía con un nombre y una imagen
+struct InfografiaItem: Identifiable {
+    let id = UUID()
+    let name: String
+    let imageName: String
+}
 
 struct CommunityView: View {
     @State private var searchText: String = ""
+    
+    // Lista de infografías con nombres e imágenes
+    let infografias = [
+        InfografiaItem(name: "Incendios", imageName: "incendios"),
+        InfografiaItem(name: "Sismos", imageName: "sismos"),
+        InfografiaItem(name: "Robos", imageName: "robos"),
+        InfografiaItem(name: "Inundaciones", imageName: "inundaciones")
+    ]
     
     var body: some View {
         NavigationView {
@@ -75,10 +84,10 @@ struct CommunityView: View {
                             isCommunity: true
                         )
 
-                        // Sección "Infografías"
-                        SectionView(
+                        // Sección "Infografías" con NavigationLink a DetailedInfografiaView
+                        InfografiaSectionView(
                             title: "Infografías",
-                            items: ["Infografía 1", "Infografía 2", "Infografía 3", "Infografía 4"],
+                            infografias: infografias,
                             seeMoreTitle: "Ver más",
                             seeMoreDestination: MoreItemsView(title: "Infografías")
                         )
@@ -137,6 +146,80 @@ struct SectionView<Destination: View>: View {
     }
 }
 
+// Vista para la sección de infografías personalizada con video solo en "Incendios"
+struct InfografiaSectionView<Destination: View>: View {
+    var title: String
+    var infografias: [InfografiaItem]
+    var seeMoreTitle: String
+    var seeMoreDestination: Destination
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.headline)
+                .padding(.horizontal)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHGrid(rows: [GridItem(.fixed(150))], spacing: 16) {
+                    ForEach(infografias) { infografia in
+                        NavigationLink(destination: DetailedInfografiaView(infografiaName: infografia.name)) {
+                            VStack {
+                                if infografia.name == "Incendios" {
+                                    // Usa VideoPlayer solo para "Incendios"
+                                    VideoPlayerView(videoName: "bonfire-particles")
+                                        .frame(width: 120, height: 150)
+                                        .cornerRadius(10)
+                                } else {
+                                    // Fondo estándar que ocupa todo el espacio
+                                    ZStack {
+                                        Image(infografia.imageName)
+                                            .resizable()
+                                            .scaledToFill() // Abarca todo el espacio
+                                            .frame(width: 120, height: 150)
+                                            .clipped() // Recorta la imagen si es necesario
+                                            .cornerRadius(10)
+                                        Text(infografia.name)
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                            .background(Color.black.opacity(0.6))
+                                            .padding(5)
+                                            .cornerRadius(5)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    NavigationLink(destination: seeMoreDestination) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.blue.opacity(0.3))
+                            .frame(width: 120, height: 150)
+                            .overlay(Text(seeMoreTitle))
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
+    }
+}
+
+// Subvista para reproducir video
+struct VideoPlayerView: View {
+    let videoName: String
+    
+    var body: some View {
+        if let url = Bundle.main.url(forResource: videoName, withExtension: "mp4") {
+            VideoPlayer(player: AVPlayer(url: url))
+                .onAppear {
+                    AVPlayer(url: url).play() // Inicia el video automáticamente
+                }
+        } else {
+            Text("Video no encontrado")
+                .foregroundColor(.red)
+        }
+    }
+}
+
 // Vista de ejemplo para MoreItemsView
 struct MoreItemsView: View {
     var title: String
@@ -159,6 +242,20 @@ struct DetailView: View {
         VStack {
             Text(item)
                 .font(.title)
+                .padding()
+            Spacer()
+        }
+    }
+}
+
+// Vista de ejemplo para InfografiasView renombrada
+struct DetailedInfografiaView: View {
+    var infografiaName: String
+    
+    var body: some View {
+        VStack {
+            Text(infografiaName)
+                .font(.largeTitle)
                 .padding()
             Spacer()
         }
