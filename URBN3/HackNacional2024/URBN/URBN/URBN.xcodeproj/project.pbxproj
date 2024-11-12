@@ -64,6 +64,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		864793F62CE328B000AB66BF /* ExtraViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ExtraViews; sourceTree = "<group>"; };
 		86E12A722CE1C539008FB684 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		86E12A732CE1C543008FB684 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		86E12A802CE1C5D8008FB684 /* SharedViews */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SharedViews; sourceTree = "<group>"; };
@@ -159,6 +160,7 @@
 		E77B954C2CD1BE8900D19B97 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				864793F62CE328B000AB66BF /* ExtraViews */,
 				864793F42CE3029C00AB66BF /* HeatMapOverlay.swift */,
 				86E12A872CE1C65F008FB684 /* TripMapView.swift */,
 				86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */,
@@ -186,6 +188,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				864793F62CE328B000AB66BF /* ExtraViews */,
 				86E12A722CE1C539008FB684 /* Models */,
 				86E12A732CE1C543008FB684 /* Services */,
 				86E12A802CE1C5D8008FB684 /* SharedViews */,
