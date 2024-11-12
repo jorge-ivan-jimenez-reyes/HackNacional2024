@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		864793F52CE3029E00AB66BF /* HeatMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864793F42CE3029C00AB66BF /* HeatMapOverlay.swift */; };
 		86AE3EB12CE1D4C0007EA14E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95252CD1BC3F00D19B97 /* Assets.xcassets */; };
 		86AE3EB22CE1D4C4007EA14E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E77B95282CD1BC3F00D19B97 /* Preview Assets.xcassets */; };
 		86E12A6A2CE1B2D3008FB684 /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		864793F42CE3029C00AB66BF /* HeatMapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatMapOverlay.swift; sourceTree = "<group>"; };
 		86AE3EBB2CE1D847007EA14E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationViewFactory.swift; sourceTree = "<group>"; };
 		86E12A872CE1C65F008FB684 /* TripMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMapView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		E77B954C2CD1BE8900D19B97 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				864793F42CE3029C00AB66BF /* HeatMapOverlay.swift */,
 				86E12A872CE1C65F008FB684 /* TripMapView.swift */,
 				86E12A692CE1B2C8008FB684 /* AnnotationViewFactory.swift */,
 				E77B954D2CD1BE9B00D19B97 /* SOSView.swift */,
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E77B95522CD1BEC800D19B97 /* SettingsView.swift in Sources */,
+				864793F52CE3029E00AB66BF /* HeatMapOverlay.swift in Sources */,
 				E77B954E2CD1BE9B00D19B97 /* SOSView.swift in Sources */,
 				86E12A882CE1C66C008FB684 /* TripMapView.swift in Sources */,
 				E77B95242CD1BC3E00D19B97 /* ContentView.swift in Sources */,
