@@ -9,17 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedView: Tab = .sos
+    @State private var isTabBarHidden = false
 
     var body: some View {
         VStack(spacing: 0) {
-            // Cambia la vista mostrada en función de la selección
             Group {
                 switch selectedView {
                 case .map:
                     TripMapView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .community:
-                    CommunityView()
+                    CommunityView(isTabBarHidden: $isTabBarHidden) // Pasa el binding de isTabBarHidden
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 case .sos:
                     SOSView()
@@ -32,13 +32,14 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // Asegura que la vista ocupada esté centrada y no empujada
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            // Coloca el TabBar personalizado en la parte inferior
-            TabBarView(selectedView: $selectedView)
-                .frame(height: 50) // Ajusta la altura del TabBar si es necesario
+            if !isTabBarHidden {
+                TabBarView(selectedView: $selectedView)
+                    .frame(height: 50)
+            }
         }
-        .ignoresSafeArea(.keyboard) // Ignora el área de teclado en caso de que cause desplazamiento
+        .ignoresSafeArea(.keyboard)
     }
 }
 

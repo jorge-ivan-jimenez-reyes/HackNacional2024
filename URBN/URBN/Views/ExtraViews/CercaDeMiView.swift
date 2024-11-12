@@ -7,34 +7,51 @@
 
 import SwiftUI
 
+// Datos para cada cuadro en la vista CercaDeMiView
+struct NearbyItem: Identifiable {
+    let id = UUID()
+    let title: String
+    let imageName: String
+    let description: String
+}
+
 struct CercaDeMiView: View {
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    // Este entorno te permitirá realizar la navegación de regreso
     @Environment(\.presentationMode) var presentationMode
+    @Binding var isTabBarHidden: Bool  // Binding para controlar la visibilidad del TabBar
+
+    // Arreglo de datos de ejemplo
+    let nearbyItems: [NearbyItem] = [
+        NearbyItem(title: "Sismo en Mixcoac", imageName: "Mixcoac", description: "Las falla de Mixcoac ataca otra vez."),
+        NearbyItem(title: "Choque en Eje 8 Sur", imageName: "Choque", description: "Deja 5 lesionados."),
+        NearbyItem(title: "Carambola en Augusto Rodin", imageName: "Carambola", description: "Conductores desesperados sufren las consecuencias."),
+        NearbyItem(title: "Manifestantes cierran calle", imageName: "Manifestantes", description: "Con el fin de pedir justicia para su causa."),
+        NearbyItem(title: "Calle en reparación", imageName: "Calle", description: "Toma tus precauciones al pasar por esta calle."),
+        NearbyItem(title: "Evento religioso", imageName: "Evento", description: "Peregrinos ocupan ejes viales enteros.")
+    ]
     
     var body: some View {
         VStack {
             // Encabezado
             HStack {
                 Button(action: {
-                    // Acción para regresar a CommunityView
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.backward")
                         .font(.title)
                         .foregroundColor(.white)
                         .padding(10)
-                        .background(Color.gray.opacity(0.6)) // Fondo translúcido
+                        .background(Color.gray.opacity(0.6))
                         .clipShape(Circle())
                 }
                 
                 Spacer()
                 
-                Text("Cerca de mi")
+                Text("Cerca de mí")
                     .font(.largeTitle)
                     .bold()
                 
@@ -53,41 +70,47 @@ struct CercaDeMiView: View {
                 }
             }
             .padding(.horizontal, 24)
-            .navigationBarBackButtonHidden(true) // Oculta la flecha de retroceso por defecto
+            .navigationBarBackButtonHidden(true)
             
             // Contenido en cuadrícula
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(0..<6) { _ in
+                LazyVGrid(columns: columns, spacing: 19) {
+                    ForEach(nearbyItems) { item in
                         VStack(alignment: .leading) {
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(height: 135)
+                            Image(item.imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill) // Llenar el contenedor aunque se recorte
+                                .frame(height: 100)
+                                .clipped()
                             
-                            Text("Título")
+                            Text(item.title)
                                 .font(.headline)
-                                .padding(.top, 8)
                                 .padding(.horizontal)
                             
-                            Text("Lorem Ipsum")
+                            Text(item.description)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
+                                .lineLimit(3)               // Truncar descripción si es demasiado larga
+                                .truncationMode(.tail)
                                 .padding(.horizontal)
-                                .padding(.bottom, 8)
+                                .padding(.bottom, 10)
                         }
+                        .frame(height: 200)               // Altura fija para todas las tarjetas
                         .background(Color.white)
                         .cornerRadius(10)
                         .shadow(radius: 5)
                     }
                 }
-                .padding(.horizontal, 24) // Aumentar margen izquierdo y derecho del grid
+                .padding(.horizontal, 24)
             }
         }
-        .background(Color.white) // Fondo blanco
+        .background(Color.white)
         .edgesIgnoringSafeArea(.bottom)
+        .onAppear { isTabBarHidden = true }
+        .onDisappear { isTabBarHidden = false }
     }
 }
 
 #Preview {
-    CercaDeMiView()
+    CercaDeMiView(isTabBarHidden: .constant(false))
 }
