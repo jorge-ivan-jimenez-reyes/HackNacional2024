@@ -1,135 +1,132 @@
-//
-//  SOSView.swift
-//  URBN
-//
-//  Created by Ximena Cruz on 29/10/24.
-//
-
 import SwiftUI
+
 struct Contact: Identifiable {
     var id = UUID()
     var name: String
+    var profileImage: Image? = Image(systemName: "person.crop.circle.fill")
+    var messageSent: Bool = false
 }
 
 struct SOSView: View {
-    @State private var contacts: [Contact] = [Contact(name: "Nombre 1"), Contact(name: "Nombre 2"), Contact(name: "Nombre 3")]
-    @State private var profileImage: Image? = Image(systemName: "person.crop.circle.fill") // Placeholder de imagen
-    @State private var showingImagePicker = false
-    @State private var inputImage: UIImage?
-    @State private var username: String = "Usuario" // Nombre de usuario editable
+    @State private var contacts: [Contact] = [
+        Contact(name: "Nombre 1", profileImage: Image("profile1")),
+        Contact(name: "Nombre 2", profileImage: Image("profile2")),
+        Contact(name: "Nombre 3", profileImage: Image("profile3"))
+    ]
+    @State private var showingAlert = false
 
     var body: some View {
-        VStack {
-            // Header con imagen y nombre de usuario
+        VStack(spacing: 20) {
+            // Header con el nombre de la app y un icono
             HStack {
-                profileImage?
+                Image(systemName: "newspaper.fill") // Ícono representativo de la app
                     .resizable()
-                    .frame(width: 65, height: 65)
-                    .foregroundColor(.gray)
-                    .clipShape(Circle())
-                    .onTapGesture {
-                        showingImagePicker = true
-                    }
-
-                VStack(alignment: .leading) {
-                    Text("Bienvenido 👋")
-                        .font(.subheadline)
-                        .multilineTextAlignment(.leading)
-
-                    TextField("Nombre de usuario", text: $username)
-                        .font(.title)
-                        .bold()
-                        .textFieldStyle(PlainTextFieldStyle())
-                }
-
+                    .frame(width: 30, height: 30)
+                    .foregroundColor(Color.red)
+                
+                Text("Newsip")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.red)
+                
                 Spacer()
-
+                
                 Button(action: {
+                    // Acción del botón de configuración
                 }) {
-                    ZStack {
-                        Circle()
-                            .fill(Color.white)
-                            .frame(width: 50, height: 50)
-                            .shadow(color: Color.black.opacity(0.3), radius: 5, x: 3, y: 3)
-
-                        Image(systemName: "gearshape.fill")
-                            .resizable()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(.customRed)
-                    }
+                    Image(systemName: "gearshape.fill")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.gray)
+                        .padding(10)
+                        .background(Color.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 5)
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.top, 16)
 
-            // Placeholder para contactos (dinámico)
-            HStack {
-                ScrollView(.horizontal) {
-                    HStack(spacing: 20) {
-                        ForEach(contacts) { contact in
-                            VStack {
-                                Circle()
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(width: 80, height: 80)
-                                Text(contact.name)
-                                    .font(.caption)
-                            }
-                        }
-
-                        VStack {
-                            Button(action: {
-                                contacts.append(Contact(name: "Nuevo Contacto"))
-                            }) {
-                                ZStack {
+            // Contactos
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(contacts) { contact in
+                        VStack(spacing: 8) {
+                            contact.profileImage?
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                                .overlay(
                                     Circle()
-                                        .fill(Color.customRed)
-                                        .frame(width: 80, height: 80)
-                                    HStack(spacing: 6) {
-                                        ForEach(0..<3) { _ in
-                                            Circle()
-                                                .fill(Color.white)
-                                                .frame(width: 10, height: 10)
-                                        }
-                                    }
-                                }
-                            }
-                            Text("Editar")
+                                        .stroke(contact.messageSent ? Color.green : Color.clear, lineWidth: 3)
+                                )
+                                .shadow(radius: 5)
+
+                            Text(contact.name)
                                 .font(.caption)
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
+                        }
+                    }
+
+                    // Botón para agregar un nuevo contacto
+                    Button(action: {
+                        contacts.append(Contact(name: "Nuevo Contacto"))
+                    }) {
+                        VStack(spacing: 8) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.red)
+                                    .frame(width: 70, height: 70)
+                                    .overlay(
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.white)
+                                            .font(.title)
+                                    )
+                                    .shadow(radius: 5)
+                            }
+                            Text("Agregar")
+                                .font(.caption)
+                                .foregroundColor(.red)
                         }
                     }
                 }
+                .padding(.horizontal, 16)
             }
-            .padding()
+            .padding(.vertical, 10)
 
             Spacer()
 
-            VStack {
+            // Botón SOS
+            VStack(spacing: 12) {
                 Button(action: {
+                    sendSOSMessage()
                 }) {
                     ZStack {
                         Circle()
                             .fill(
-                                LinearGradient(gradient: Gradient(colors: [Color(red: 1, green: 0.145, blue: 0.145), Color(red: 1, green: 0.75, blue: 0.75)]), startPoint: .leading, endPoint: .trailing)
+                                LinearGradient(gradient: Gradient(colors: [Color.red.opacity(0.8), Color.red]), startPoint: .top, endPoint: .bottom)
                             )
                             .frame(width: 200, height: 200)
-
-                        Circle()
-                            .fill(
-                                LinearGradient(gradient: Gradient(colors: [Color(red: 1, green: 0.75, blue: 0.75), Color(red: 1, green: 0.145, blue: 0.145)]), startPoint: .leading, endPoint: .trailing)
-                            )
-                            .frame(width: 160, height: 160)
+                            .shadow(radius: 10)
 
                         Image(systemName: "dot.radiowaves.left.and.right")
                             .resizable()
-                            .frame(width: 100, height: 80)
+                            .frame(width: 90, height: 70)
                             .foregroundColor(.white)
                     }
                 }
+                .alert(isPresented: $showingAlert) {
+                    Alert(
+                        title: Text("SOS Enviado"),
+                        message: Text("Tu mensaje SOS ha sido enviado a \(contacts.count) contactos."),
+                        dismissButton: .default(Text("Aceptar"))
+                    )
+                }
 
-                Text("Da click o deja presionado para un audio")
-                    .font(.footnote)
+                Text("Presiona el botón para enviar un mensaje de emergencia")
+                    .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding(.top, 10)
 
                 HStack(spacing: -10) {
                     ForEach(contacts.indices, id: \.self) { _ in
@@ -138,23 +135,26 @@ struct SOSView: View {
                             .frame(width: 25, height: 25)
                     }
                 }
-                .padding(.top, 10)
-
-                Text("Tu SOS se mandará a \(contacts.count) personas")
+                
+                Text("Se enviará a \(contacts.count) contactos")
                     .font(.footnote)
-                    .foregroundColor(.black)
-                    .padding(.top, 10)
+                    .foregroundColor(.primary)
             }
 
             Spacer()
-
         }
-        .padding(.horizontal)
-        }
+        .background(Color(UIColor.systemBackground).edgesIgnoringSafeArea(.all))
     }
 
-
-
+    func sendSOSMessage() {
+        contacts = contacts.map { contact in
+            var updatedContact = contact
+            updatedContact.messageSent = true
+            return updatedContact
+        }
+        showingAlert = true
+    }
+}
 
 // Preview
 #Preview {

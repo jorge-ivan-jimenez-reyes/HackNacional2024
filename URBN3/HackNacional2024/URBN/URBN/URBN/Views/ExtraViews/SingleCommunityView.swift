@@ -5,6 +5,7 @@
 //  Created by Ximena Cruz on 11/11/24.
 //
 
+
 import SwiftUI
 
 struct SingleCommunityView: View {
@@ -38,16 +39,19 @@ struct SingleCommunityView: View {
                 Button(action: {
                     // Acción para configuración
                 }) {
-                    Image(systemName: "gearshape.fill")
-                        .font(.title)
-                        .foregroundColor(.customRed) // Puedes personalizar el color aquí
-                        .padding(10)
+                    Image(systemName: "bookmark.fill")
+                        .resizable()
+                        .frame(width: 20, height: 25)
+                        .foregroundColor(.customRed)
+                        .padding(13)
                         .background(Color.white)
                         .clipShape(Circle())
                         .shadow(radius: 5)
+                    
                 }
             }
-            .padding(.horizontal)
+            .padding(.horizontal,20)
+            .padding(.top)
             
             Spacer()
             
@@ -68,24 +72,24 @@ struct SingleCommunityView: View {
     }
 }
 
-// Vista de cada post tipo Polaroid
 struct PolaroidPostView: View {
     var body: some View {
         VStack(spacing: 0) {
             // Imagen predeterminada
-            Image(systemName: "photo")
+            Image("Manifestantes")
                 .resizable()
+                .scaledToFill()
                 .frame(width: 320, height: 340) // Tamaño más grande
                 .clipped()
                 .padding(10) // Borde alrededor de la imagen
             
             // Título y Descripción
             VStack(alignment: .leading, spacing: 4) {
-                Text("Cenote Nuevo")
+                Text("Manifestación en proceso")
                     .font(.headline)
                     .padding(.top, 8)
                 
-                Text("Encuentran un nuevo cenote en una casa en Mérida. #Merida #Yucatán #Cenote #Yucatán2024 #México #Noticia")
+                Text("Manifestantes bloquean importante avenida. Tomen sus precauciones. #CDMX #Manifestación #México #Noticia")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .padding(.bottom, 1)

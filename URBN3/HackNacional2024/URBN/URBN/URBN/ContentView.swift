@@ -10,6 +10,7 @@ import MapKit
 
 struct ContentView: View {
     @State private var selectedView: Tab = .sos
+    @State private var isTabBarHidden = false
     
     // Define la lista de zonas peligrosas con diferentes niveles
     let dangerousZones = [
@@ -170,7 +171,7 @@ longitude: -99.1), level: .medium, name: "La Reforma"),
                           }
                       }
                   case .community:
-                      CommunityView()
+                      CommunityView(isTabBarHidden: $isTabBarHidden) // Pasa el binding de isTabBarHidden
                           .frame(maxWidth: .infinity, maxHeight: .infinity)
                   case .sos:
                       SOSView()
