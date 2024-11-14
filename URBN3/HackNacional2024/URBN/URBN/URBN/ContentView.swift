@@ -14,6 +14,7 @@ struct ContentView: View {
     
     // Define la lista de zonas peligrosas con diferentes niveles
     let dangerousZones = [
+        
         DangerousZone(coordinate: CLLocationCoordinate2D(latitude: 19.4326, longitude: -99.1332), level: .high, name: "Zócalo"),
         DangerousZone(coordinate: CLLocationCoordinate2D(latitude: 19.427, longitude: -99.1677), level: .high, name: "Colonia Doctores"),
         DangerousZone(coordinate: CLLocationCoordinate2D(latitude: 19.4436, longitude: -99.1477), level: .high, name: "Tepito"),
@@ -113,7 +114,11 @@ longitude: -99.1), level: .medium, name: "La Reforma"),
         DangerousZone(coordinate: CLLocationCoordinate2D(latitude: 19.3863, longitude: -99.1873), level: .low, name: "Lomas de Plateros"),
 
         ]
-
+    let safeZones = [
+        SafeZone(coordinate: CLLocationCoordinate2D(latitude: 19.4333, longitude: -99.1500), name: "Refugio Seguro 1"),
+        SafeZone(coordinate: CLLocationCoordinate2D(latitude: 19.4350, longitude: -99.1520), name: "Refugio Seguro 2")
+    ]
+    
     var body: some View {
           VStack(spacing: 0) {
               // Cambia la vista mostrada en función de la selección
@@ -121,7 +126,7 @@ longitude: -99.1), level: .medium, name: "La Reforma"),
                   switch selectedView {
                   case .map:
                       VStack {
-                          TripMapView(dangerousZones: dangerousZones)
+                          TripMapView(dangerousZones: dangerousZones, safeZones: safeZones)
                               .frame(maxWidth: .infinity, maxHeight: .infinity)
                           
                           // Leyenda descriptiva para los colores de peligro

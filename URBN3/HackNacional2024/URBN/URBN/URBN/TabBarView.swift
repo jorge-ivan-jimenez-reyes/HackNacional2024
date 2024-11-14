@@ -24,7 +24,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .map ? "map.fill" : "map")
                     .resizable()
                     .frame(width: 30, height: 25)
-                    .foregroundColor(.customRed)
+                    .foregroundColor(.red)
             }
             Spacer()
             Button(action: {
@@ -33,7 +33,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .community ? "person.3.fill" : "person.3")
                     .resizable()
                     .frame(width: 45, height: 30)
-                    .foregroundColor(.customRed)
+                    .foregroundColor(.red)
             }
             Spacer()
             Button(action: {
@@ -41,7 +41,7 @@ struct TabBarView: View {
             }) {
                 ZStack {
                     Circle()
-                        .fill(Color.customRed)
+                        .fill(Color.red)
                         .frame(width: 60, height: 60)
                         .shadow(color: Color.black.opacity(0.3), radius: 2, x: 2, y: 3)
                     
@@ -58,7 +58,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .publish ? "plus.app.fill" : "plus.app")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(.customRed)
+                    .foregroundColor(.red)
             }
             Spacer()
             Button(action: {
@@ -67,7 +67,7 @@ struct TabBarView: View {
                 Image(systemName: selectedView == .settings ? "person.fill" : "person")
                     .resizable()
                     .frame(width: 30, height: 30)
-                    .foregroundColor(.customRed)
+                    .foregroundColor(.red)
             }
             Spacer()
         }

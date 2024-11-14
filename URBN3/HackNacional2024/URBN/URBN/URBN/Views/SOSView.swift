@@ -1,25 +1,25 @@
 import SwiftUI
 
-struct Contact: Identifiable {
+struct EmergencyContact: Identifiable {
     var id = UUID()
     var name: String
     var profileImage: Image? = Image(systemName: "person.crop.circle.fill")
-    var messageSent: Bool = false
 }
 
 struct SOSView: View {
-    @State private var contacts: [Contact] = [
-        Contact(name: "Nombre 1", profileImage: Image("profile1")),
-        Contact(name: "Nombre 2", profileImage: Image("profile2")),
-        Contact(name: "Nombre 3", profileImage: Image("profile3"))
+    @State private var contacts: [EmergencyContact] = [
+        EmergencyContact(name: "Nombre 1", profileImage: Image("profile1")),
+        EmergencyContact(name: "Nombre 2", profileImage: Image("profile2")),
+        EmergencyContact(name: "Nombre 3", profileImage: Image("profile3"))
     ]
     @State private var showingAlert = false
+    @State private var showingChatBotView = false // Estado para controlar la presentación del chatbot
 
     var body: some View {
         VStack(spacing: 20) {
             // Header con el nombre de la app y un icono
             HStack {
-                Image(systemName: "newspaper.fill") // Ícono representativo de la app
+                Image(systemName: "newspaper.fill")
                     .resizable()
                     .frame(width: 30, height: 30)
                     .foregroundColor(Color.red)
@@ -31,17 +31,21 @@ struct SOSView: View {
                 
                 Spacer()
                 
+                // Botón para abrir el chatbot
                 Button(action: {
-                    // Acción del botón de configuración
+                    showingChatBotView = true
                 }) {
-                    Image(systemName: "gearshape.fill")
+                    Image(systemName: "message.fill")
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.red)
                         .padding(10)
                         .background(Color.white)
                         .clipShape(Circle())
                         .shadow(radius: 5)
+                }
+                .sheet(isPresented: $showingChatBotView) {
+                    ChatBotView() // Muestra ChatBotView como una hoja modal
                 }
             }
             .padding(.horizontal)
@@ -57,10 +61,6 @@ struct SOSView: View {
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 60, height: 60)
                                 .clipShape(Circle())
-                                .overlay(
-                                    Circle()
-                                        .stroke(contact.messageSent ? Color.green : Color.clear, lineWidth: 3)
-                                )
                                 .shadow(radius: 5)
 
                             Text(contact.name)
@@ -71,7 +71,7 @@ struct SOSView: View {
 
                     // Botón para agregar un nuevo contacto
                     Button(action: {
-                        contacts.append(Contact(name: "Nuevo Contacto"))
+                        contacts.append(EmergencyContact(name: "Nuevo Contacto"))
                     }) {
                         VStack(spacing: 8) {
                             ZStack {
@@ -127,18 +127,6 @@ struct SOSView: View {
                 Text("Presiona el botón para enviar un mensaje de emergencia")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-
-                HStack(spacing: -10) {
-                    ForEach(contacts.indices, id: \.self) { _ in
-                        Circle()
-                            .fill(Color.gray.opacity(0.2))
-                            .frame(width: 25, height: 25)
-                    }
-                }
-                
-                Text("Se enviará a \(contacts.count) contactos")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
             }
 
             Spacer()
@@ -147,16 +135,6 @@ struct SOSView: View {
     }
 
     func sendSOSMessage() {
-        contacts = contacts.map { contact in
-            var updatedContact = contact
-            updatedContact.messageSent = true
-            return updatedContact
-        }
         showingAlert = true
     }
-}
-
-// Preview
-#Preview {
-    SOSView()
 }

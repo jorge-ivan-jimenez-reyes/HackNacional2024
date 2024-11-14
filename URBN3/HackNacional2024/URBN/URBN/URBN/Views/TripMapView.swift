@@ -11,17 +11,23 @@ enum DangerLevel {
     case high, medium, low
 }
 
+struct SafeZone {
+    let coordinate: CLLocationCoordinate2D
+    let name: String
+}
+
 struct TripMapView: UIViewRepresentable {
     @Environment(LocationManager.self) var locationManager
     
     let dangerousZones: [DangerousZone]
+    let safeZones: [SafeZone] // Zonas de seguridad
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.showsUserLocation = true
         
-        // Agrega un overlay de círculo y un marcador con el nombre para cada zona peligrosa
+        // Agregar zonas peligrosas
         for zone in dangerousZones {
             let circle = MKCircle(center: zone.coordinate, radius: 500)
             mapView.addOverlay(circle)
@@ -32,7 +38,14 @@ struct TripMapView: UIViewRepresentable {
             mapView.addAnnotation(annotation)
         }
         
-        // Centra el mapa en la ubicación del usuario cuando se carga
+        // Agregar zonas seguras
+        for zone in safeZones {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = zone.coordinate
+            annotation.title = "Zona Segura: \(zone.name)"
+            mapView.addAnnotation(annotation)
+        }
+
         if let userLocation = locationManager.userLocation {
             let region = MKCoordinateRegion(
                 center: userLocation.coordinate,
@@ -93,29 +106,27 @@ struct TripMapView: UIViewRepresentable {
                 return nil
             }
             
-            let identifier = "DangerousZone"
+            let identifier = "ZoneMarker"
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
             
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView?.canShowCallout = true
-                
-                // Personalización de la vista de la etiqueta
-                annotationView?.glyphText = "⚠️"
-                annotationView?.titleVisibility = .adaptive
-                annotationView?.subtitleVisibility = .adaptive
                 annotationView?.displayPriority = .required
                 annotationView?.canShowCallout = true
                 
-                // Botón de información adicional en el “callout”
+                // Icono de información adicional en el “callout”
                 let infoButton = UIButton(type: .detailDisclosure)
                 annotationView?.rightCalloutAccessoryView = infoButton
             } else {
                 annotationView?.annotation = annotation
             }
             
-            if let dangerousZoneAnnotation = annotation as? MKPointAnnotation,
-               let zone = parent.dangerousZones.first(where: { $0.name == dangerousZoneAnnotation.title }) {
+            if let zoneTitle = annotation.title, zoneTitle?.starts(with: "Zona Segura") == true {
+                annotationView?.markerTintColor = UIColor.green
+                annotationView?.glyphText = "🟢"
+            } else if let dangerousZoneAnnotation = annotation as? MKPointAnnotation,
+                      let zone = parent.dangerousZones.first(where: { $0.name == dangerousZoneAnnotation.title }) {
                 
                 // Cambia el color del marcador en función del nivel de peligro
                 switch zone.level {
@@ -147,3 +158,4 @@ struct TripMapView: UIViewRepresentable {
         }
     }
 }
+
