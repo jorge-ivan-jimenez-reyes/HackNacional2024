@@ -25,71 +25,73 @@ struct ChatBotView: View {
 
             // Lista de mensajes del chat
             ScrollView {
-                VStack(alignment: .leading, spacing: 12) {
-                    ForEach(messages, id: \.self) { message in
-                        HStack(alignment: .top, spacing: 10) {
-                            if message.starts(with: "Bot:") {
-                                Image(systemName: "person.fill.questionmark")
-                                    .foregroundColor(.red)
-                                    .padding(5)
-                                    .background(Color.red.opacity(0.2))
-                                    .clipShape(Circle())
-                                Text(message.replacingOccurrences(of: "Bot: ", with: ""))
-                                    .padding()
-                                    .background(Color.red.opacity(0.1))
-                                    .cornerRadius(10)
-                                    .foregroundColor(.primary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            } else {
-                                Spacer()
-                                Text(message.replacingOccurrences(of: "Tú: ", with: ""))
-                                    .padding()
-                                    .background(Color.blue.opacity(0.2))
-                                    .cornerRadius(10)
-                                    .foregroundColor(.primary)
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                Image(systemName: "person.circle.fill")
-                                    .foregroundColor(.blue)
-                                    .padding(5)
-                                    .background(Color.blue.opacity(0.2))
-                                    .clipShape(Circle())
-                            }
-                        }
-                        .transition(.move(edge: .bottom))
-                    }
-                }
-                .padding()
-            }
-            .background(Color.white)
-            .cornerRadius(20)
-            .shadow(radius: 5)
-            .padding()
-
+                           VStack(alignment: .leading, spacing: 16) {
+                               ForEach(messages, id: \.self) { message in
+                                   HStack(alignment: .top, spacing: 12) {
+                                       if message.starts(with: "Bot:") {
+                                           Image(systemName: "person.fill.questionmark")
+                                               .foregroundColor(.red)
+                                               .padding(5)
+                                               .background(Color.red.opacity(0.2))
+                                               .clipShape(Circle())
+                                           Text(message.replacingOccurrences(of: "Bot: ", with: ""))
+                                               .padding()
+                                               .background(Color.red.opacity(0.1))
+                                               .cornerRadius(10)
+                                               .shadow(radius: 3)
+                                               .foregroundColor(.primary)
+                                               .frame(maxWidth: .infinity, alignment: .leading)
+                                       } else {
+                                           Spacer()
+                                           Text(message.replacingOccurrences(of: "Tú: ", with: ""))
+                                               .padding()
+                                               .background(Color.blue.opacity(0.2))
+                                               .cornerRadius(10)
+                                               .shadow(radius: 3)
+                                               .foregroundColor(.primary)
+                                               .frame(maxWidth: .infinity, alignment: .trailing)
+                                           Image(systemName: "person.circle.fill")
+                                               .foregroundColor(.blue)
+                                               .padding(5)
+                                               .background(Color.blue.opacity(0.2))
+                                               .clipShape(Circle())
+                                       }
+                                   }
+                                   .transition(.move(edge: .bottom))
+                               }
+                           }
+                           .padding()
+                       }
+                       .background(Color.white)
+                       .cornerRadius(20)
+                       .shadow(radius: 5)
+                       .padding()
             // Sugerencias rápidas
-            HStack {
-                Text("Sugerencias Rápidas:")
-                    .font(.headline)
-                    .foregroundColor(.gray)
-                Spacer()
-            }
-            .padding(.horizontal)
+            VStack(alignment: .leading, spacing: 10) {
+                            Text("Sugerencias Rápidas:")
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                                .padding(.horizontal)
 
-            HStack(spacing: 15) {
-                ForEach(["Sismo", "Incendio", "Accidente", "Inundación", "Zona segura"], id: \.self) { suggestion in
-                    Button(action: {
-                        newMessage = suggestion
-                        sendMessage()
-                    }) {
-                        Text(suggestion)
-                            .padding()
-                            .background(Color.red.opacity(0.15))
-                            .foregroundColor(.red)
-                            .cornerRadius(10)
-                            .shadow(radius: 3)
-                    }
-                }
-            }
-            .padding(.horizontal)
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                                ForEach(["Sismo", "Incendio", "Accidente", "Inundación", "Zona segura"], id: \.self) { suggestion in
+                                    Button(action: {
+                                        newMessage = suggestion
+                                        sendMessage()
+                                    }) {
+                                        Text(suggestion)
+                                            .padding()
+                                            .frame(maxWidth: .infinity)
+                                            .background(Color.red.opacity(0.15))
+                                            .foregroundColor(.red)
+                                            .cornerRadius(10)
+                                            .shadow(radius: 3)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                        .padding(.bottom, 10)
 
             // Campo de entrada de texto para mensajes
             HStack {
